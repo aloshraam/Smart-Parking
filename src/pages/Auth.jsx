@@ -15,8 +15,6 @@ const Auth = ({ insideRegister }) => {
     password: "",
   });
 
-  console.log(inputData);
-
   // Register logic
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -47,9 +45,15 @@ const Auth = ({ insideRegister }) => {
         const result = await loginAPI(inputData)
         if(result.status === 200){
           setLoggedIn(true)
+          // authoraizaiton
+          sessionStorage.setItem("user",JSON.stringify(result.data.user))
+          sessionStorage.setItem("token",result.data.token)
+          
           setTimeout(() => {
             alert("Login Successful!!!")
-            navigate('/dashboard')
+            navigate('/')
+            console.log(result.data);
+
             setInputData({ username: "", email: "", password: "" }); // Reset input
           }, 2000);
         }else{
