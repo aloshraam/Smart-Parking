@@ -50,7 +50,7 @@ const Auth = ({ insideRegister }) => {
           sessionStorage.setItem("token",result.data.token)
           
           setTimeout(() => {
-            alert("Login Successful!!!")
+            // alert("Login Successful!!!")
             navigate('/')
             console.log(result.data);
 
